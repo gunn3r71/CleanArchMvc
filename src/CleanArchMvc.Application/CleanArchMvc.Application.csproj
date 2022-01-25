@@ -9,6 +9,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Interfaces\Services\" />
 	  <Folder Include="Mappings\" />
 	</ItemGroup>
 

@@ -1,4 +1,7 @@
-﻿using CleanArchMvc.Domain.Interfaces.Repositories;
+﻿using CleanArchMvc.Application.Interfaces.Services;
+using CleanArchMvc.Application.Mappings;
+using CleanArchMvc.Application.Services;
+using CleanArchMvc.Domain.Interfaces.Repositories;
 using CleanArchMvc.Infrastructure.Contexts;
 using CleanArchMvc.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +30,11 @@ namespace CleanArchMvc.CrossCutting
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductService, ProductService>();
+
+            services.AddAutoMapper(typeof(CategoryProfile));
 
             return services;
         }
