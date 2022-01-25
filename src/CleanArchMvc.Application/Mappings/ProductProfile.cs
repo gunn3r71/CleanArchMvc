@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using AutoMapper;
+﻿using AutoMapper;
 using CleanArchMvc.Application.DTOs.Products;
 using CleanArchMvc.Domain.Entities;
 
