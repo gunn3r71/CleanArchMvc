@@ -6,7 +6,7 @@ namespace CleanArchMvc.Application.DTOs.Categories
     public record UpdateCategoryDto
     {
         [Required(ErrorMessage = "{0} cannot be null.")]
-        [Display(Name = "CategoryId")]
+        [Display(Name = "Id")]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "{0} cannot be null.", AllowEmptyStrings = false)]

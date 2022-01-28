@@ -28,7 +28,7 @@ namespace CleanArchMvc.Application.DTOs.Products
         public string Image { get; set; }
 
         [Required(ErrorMessage = "{0} cannot be null.")]
-        [DisplayName("CategoryId")]
+        [DisplayName("Id")]
         public int CategoryId { get; set; }
     }
 }

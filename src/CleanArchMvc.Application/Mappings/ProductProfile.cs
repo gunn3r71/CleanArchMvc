@@ -8,7 +8,7 @@ namespace CleanArchMvc.Application.Mappings
     {
         public ProductProfile()
         {
-            CreateMap<Product, ProductDto>().Include(typeof(CategoryProfile), typeof(Category)).ReverseMap();
+            CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<CreateProductDto, Product>();
             CreateMap<UpdateProductDto, Product>();
         }
