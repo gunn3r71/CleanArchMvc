@@ -2,6 +2,7 @@
 
 	<ItemGroup>
 	  <PackageReference Include="AutoMapper" Version="11.0.0" />
+	  <PackageReference Include="MediatR" Version="10.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -11,6 +12,7 @@
 	<ItemGroup>
 	  <Folder Include="Interfaces\Services\" />
 	  <Folder Include="Mappings\" />
+	  <Folder Include="Products\Handlers\" />
 	</ItemGroup>
 
 	<PropertyGroup>
