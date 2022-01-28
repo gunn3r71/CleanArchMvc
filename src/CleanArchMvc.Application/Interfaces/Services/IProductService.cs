@@ -8,7 +8,6 @@ namespace CleanArchMvc.Application.Interfaces.Services
     {
         Task<IEnumerable<ProductDto>> GetProducts();
         Task<ProductDto> GetProductById(int id);
-        Task<ProductDto> GetProductWithCategory(int id);
         Task<ProductDto> AddProduct(CreateProductDto product);
         Task<ProductDto> UpdateProduct(UpdateProductDto product);
         Task<bool> RemoveProduct(int id);

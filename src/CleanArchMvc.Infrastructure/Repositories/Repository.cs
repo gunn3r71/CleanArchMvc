@@ -19,18 +19,18 @@ namespace CleanArchMvc.Infrastructure.Repositories
             _entity = _context.Set<T>();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _entity.AsNoTracking()
                                     .ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public virtual async Task<T> GetByIdAsync(int id)
         {
             return await _entity.FindAsync(id);
         }
 
-        public async Task<T> CreateAsync(T entity)
+        public virtual async Task<T> CreateAsync(T entity)
         {
             _entity.Add(entity);
             await _context.SaveChangesAsync();
@@ -38,7 +38,7 @@ namespace CleanArchMvc.Infrastructure.Repositories
             return entity;
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public virtual async Task<T> UpdateAsync(T entity)
         {
             _entity.Update(entity);
             await _context.SaveChangesAsync();
@@ -46,7 +46,7 @@ namespace CleanArchMvc.Infrastructure.Repositories
             return entity;
         }
 
-        public async Task RemoveAsync(T entity)
+        public virtual async Task RemoveAsync(T entity)
         {
             _entity.Remove(entity);
 

@@ -1,8 +1,8 @@
-﻿using CleanArchMvc.Domain.Entities;
+﻿using System.Threading.Tasks;
+using CleanArchMvc.Domain.Entities;
 using CleanArchMvc.Domain.Interfaces.Repositories;
 using CleanArchMvc.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace CleanArchMvc.Infrastructure.Repositories
 {
@@ -12,12 +12,11 @@ namespace CleanArchMvc.Infrastructure.Repositories
         {
         }
 
-        public async Task<Product> GetProductCategoryAsync(int Id)
+        public override async Task<Product> GetByIdAsync(int id)
         {
             return await _context.Products
                                     .Include(x => x.Category)
-                                    .AsNoTracking()
-                                    .FirstOrDefaultAsync(x => x.Id == Id);
+                                    .SingleOrDefaultAsync(x => x.Id == id);
         }
     }
 }
