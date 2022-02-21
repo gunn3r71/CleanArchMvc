@@ -1,0 +1,26 @@
+﻿@model CleanArchMvc.Application.DTOs.Categories.UpdateCategoryDto
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <div class="col-md-10">
+            <label asp-for="Name">Name</label>
+
+            <input asp-for="Name" class="form-control" value="@ViewBag.OldCategory.Name"/>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-md-10">
+            <button type="submit" class="btn btn-success">
+                <span class="fas fa-plus"></span>&nbsp;Create
+            </button>
+            <a asp-action="Index" class="btn btn-info"><span class="fas fa-undo-alt"></span>&nbsp;Back to list</a>
+        </div>
+    </div>
+</form>

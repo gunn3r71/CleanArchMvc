@@ -1,0 +1,73 @@
+﻿@using CleanArchMvc.Application.DTOs.Categories
+@model CleanArchMvc.Application.DTOs.Products.CreateProductDto
+
+@{
+    ViewData["Title"] = "Register New Product";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<hr/>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <div class="col-md-10">
+            <label asp-for="Name">Name</label>
+
+            <input asp-for="Name" class="form-control"/>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-md-10">
+            <label asp-for="Description">Description</label>
+
+            <input asp-for="Description" class="form-control"/>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>    
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <label asp-for="Price">Price</label>
+
+            <input asp-for="Price" type="text" class="form-control"/>
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-md-10">
+            <label asp-for="Stock">Stock</label>
+
+            <input asp-for="Stock" type="number" class="form-control"/>
+            <span asp-validation-for="Stock" class="text-danger"></span>
+        </div>
+    </div>  
+    
+    <div class="form-group">
+        <div class="col-md-10">
+            <label asp-for="Image">Image</label>
+
+            <input asp-for="Image" class="form-control" readonly/>
+            <span class="text-info">Será implementado upload de imagens no futuro</span>
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-md-10">
+            <select class="form-control" asp-for="CategoryId" asp-items="@ViewBag.Categories"></select>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-md-10">
+            <button type="submit" class="btn btn-success">
+                <span class="fas fa-plus"></span>&nbsp;Create
+            </button>
+            <a asp-action="Index" class="btn btn-info"><span class="fas fa-undo-alt"></span>&nbsp;Back to list</a>
+        </div>
+    </div>
+</form>
