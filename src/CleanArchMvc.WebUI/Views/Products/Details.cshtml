@@ -1,0 +1,50 @@
+﻿@model CleanArchMvc.Application.DTOs.Products.ProductDto
+
+<div class="row">
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(x => x.Name)</label>
+        <p>@Html.DisplayFor(x => x.Name)</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(x => x.Description)</label>
+        <p>@Html.DisplayFor(x => x.Description)</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(x => x.Price)</label>
+        <p>@Html.DisplayFor(x => x.Price)</p>
+    </div>
+
+</div>
+
+<div class="row">
+    <div clas="form-group">
+        @if (!ViewBag.ImageExists)
+        {
+            <img src="~/images/noimage.png" class="rounded-circle" width="300" height="300" asp-append-version="true" alt="no image" />
+        }
+        else
+        {
+            <img src="~/images/@Model.Image" class="rounded-circle" width="300" height="300" asp-append-version="true" alt="@Model.Name Image" />
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(x => x.Category)</label>
+        <p>@Html.DisplayFor(x => x.Category.Name)</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        <a class="btn btn-warning" role="button" href="@Url.Action("Edit","Products", Model.Id)"><span class="fas fa-edit"></span>&nbsp;Edit</a>
+        <a class="btn btn-info" role="button" href="@Url.Action("Index","Products")"><span class="fas fa-edit"></span>&nbsp;Back to list</a>
+    </div>
+</div>
