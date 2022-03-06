@@ -14,11 +14,23 @@ namespace CleanArchMvc.CrossCutting
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("SqlConnection");
 
             services.AddDbContext<ApplicationDbContext>(
+                options =>
+                {
+                    options.UseSqlServer(connectionString, x =>
+                    {
+                        x.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName);
+                        x.EnableRetryOnFailure(3);
+                        x.CommandTimeout(10);
+                        x.MigrationsHistoryTable("Migrations");
+                    });
+                });
+
+            services.AddDbContext<AuthenticationDbContext>(
                 options =>
                 {
                     options.UseSqlServer(connectionString, x =>
@@ -40,8 +52,6 @@ namespace CleanArchMvc.CrossCutting
 
             var handlers = AppDomain.CurrentDomain.Load("CleanArchMvc.Application");
             services.AddMediatR(handlers);
-
-            return services;
         }
     }
 }
