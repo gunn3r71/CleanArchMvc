@@ -16,14 +16,14 @@ namespace CleanArchMvc.Infrastructure.Identity
             _signInManager = signInManager;
         }
 
-        public async Task<bool> Authenticate(string email, string password)
+        public async Task<bool> AuthenticateAsync(string email, string password)
         {
-            var user = await _signInManager.PasswordSignInAsync(email, password, false, true);
+            var result = await _signInManager.PasswordSignInAsync(email, password, false, true);
 
-            return user.Succeeded;
+            return result.Succeeded;
         }
 
-        public async Task<bool> RegisterUserTask(string email, string password)
+        public async Task<bool> RegisterUserAsync(string email, string password)
         {
             var applicationUser = new ApplicationUser
             {
@@ -33,12 +33,12 @@ namespace CleanArchMvc.Infrastructure.Identity
 
             var result = await _userManager.CreateAsync(applicationUser);
 
-            if (result.Succeeded) await Authenticate(email, password);
+            if (result.Succeeded) await AuthenticateAsync(email, password);
 
             return result.Succeeded;
         }
 
-        public async Task Logout() =>
+        public async Task LogoutAsync() =>
             await _signInManager.SignOutAsync();
     }
 }

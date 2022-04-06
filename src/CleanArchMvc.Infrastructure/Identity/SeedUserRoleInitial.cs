@@ -18,12 +18,12 @@ namespace CleanArchMvc.Infrastructure.Identity
 
         public void SeedUsers()
         {
-            if (_userManager.FindByNameAsync("user@admin").Result is not null) return;
+            if (_userManager.FindByNameAsync("user@admin.com").Result is not null) return;
             
             var user = new ApplicationUser
             {
                 Email = "user@admin.com",
-                UserName = "user@admin",
+                UserName = "user@admin.com",
                 EmailConfirmed = true,
                 LockoutEnabled = true
             };

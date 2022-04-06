@@ -9,9 +9,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CleanArchMvc.WebUI.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private readonly IProductService _productService;
@@ -103,7 +105,8 @@ namespace CleanArchMvc.WebUI.Controllers
 
             return View(product);
         }
-
+        
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> CreateAsync(CreateProductDto product)
         {
@@ -113,7 +116,8 @@ namespace CleanArchMvc.WebUI.Controllers
 
             return RedirectToAction("Index");
         }
-
+        
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> EditAsync(UpdateProductDto product)
         {
@@ -123,7 +127,8 @@ namespace CleanArchMvc.WebUI.Controllers
 
             return RedirectToAction("Index");
         }
-
+        
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> DeleteAsync(int id)
         {

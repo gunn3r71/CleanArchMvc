@@ -4,10 +4,12 @@ using CleanArchMvc.Application.DTOs.Categories;
 using CleanArchMvc.Application.DTOs.Products;
 using CleanArchMvc.Application.Interfaces.Services;
 using CleanArchMvc.WebUI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchMvc.WebUI.Controllers
 {
+    [Authorize]
     public class CategoriesController : Controller
     {
         private readonly ICategoryService _categoryService;
@@ -40,7 +42,7 @@ namespace CleanArchMvc.WebUI.Controllers
 
             return View(category);
         }
-
+        
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -65,6 +67,7 @@ namespace CleanArchMvc.WebUI.Controllers
             return View();
         }
 
+        
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
@@ -73,6 +76,8 @@ namespace CleanArchMvc.WebUI.Controllers
             return View(category);
         }
 
+        
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Create(CreateCategoryDto category)
@@ -83,7 +88,8 @@ namespace CleanArchMvc.WebUI.Controllers
 
             return RedirectToAction("Index");
         }
-
+        
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Edit(UpdateCategoryDto category)
@@ -94,7 +100,8 @@ namespace CleanArchMvc.WebUI.Controllers
 
             return RedirectToAction("Index");
         }
-
+        
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
