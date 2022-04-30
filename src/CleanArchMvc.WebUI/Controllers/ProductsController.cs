@@ -57,7 +57,6 @@ namespace CleanArchMvc.WebUI.Controllers
             }
 
             ViewBag.OldProduct = product;
-            ViewBag.Categories = new SelectList(await GetCategoriesAsync(), "Id", "Name", product.Category.Id);
 
             return View();
         }

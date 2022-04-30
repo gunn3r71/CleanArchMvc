@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using CleanArchMvc.Domain.Entities;
 using CleanArchMvc.Domain.Interfaces.Repositories;
 using CleanArchMvc.Infrastructure.Contexts;
@@ -12,11 +13,14 @@ namespace CleanArchMvc.Infrastructure.Repositories
         {
         }
 
-        public override async Task<Product> GetByIdAsync(int id)
-        {
-            return await _context.Products
-                                    .Include(x => x.Category)
-                                    .SingleOrDefaultAsync(x => x.Id == id);
-        }
+        public override async Task<IEnumerable<Product>> GetAllAsync() =>
+            await _context.Products
+                .Include(x => x.Category)
+                .ToListAsync();
+
+        public override async Task<Product> GetByIdAsync(int id) =>
+            await _context.Products
+                .Include(x => x.Category)
+                .SingleOrDefaultAsync(x => x.Id == id);
     }
 }
